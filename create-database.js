@@ -48,12 +48,11 @@ db.serialize(() => {
     stmtEasy.run('Quanto é 10 - 4?', '6', '5', '4', '7');
     stmtEasy.run('Quanto é 5 x 3?', '15', '12', '18', '20');
     stmtEasy.run('Quanto é 12 ÷ 4?', '3', '2', '4', '5');
-    stmtEasy.run('Qual é a capital da França?', 'Paris', 'Londres', 'Berlim', 'Madri');
+    stmtEasy.run('Qual é 7 + 3?', '10', '9', '8', '11');
     stmtEasy.run('Quantos lados tem um quadrado?', '4', '3', '5', '6');
     stmtEasy.run('Quanto é 10 + 10?', '20', '15', '25', '30');
-    stmtEasy.run('Quantos minutos há em uma hora?', '60', '30', '90', '120');
     stmtEasy.run('Qual é 5²?', '25', '20', '15', '30');
-    stmtEasy.run('Quanto é 7 - 2?', '5', '4', '3', '6');
+    stmtEasy.run('Qual é 8 - 3?', '5', '4', '6', '3');
     stmtEasy.run('Qual é a metade de 8?', '4', '3', '5', '2');
     stmtEasy.run('Quanto é 6 + 7?', '13', '12', '14', '15');
     stmtEasy.run('Quanto é 4 x 5?', '20', '15', '25', '30');
@@ -63,6 +62,7 @@ db.serialize(() => {
     stmtEasy.run('Qual é 9 + 1?', '10', '9', '11', '12');
     stmtEasy.run('Quanto é 20 ÷ 4?', '5', '4', '3', '2');
     stmtEasy.run('Qual é a soma de 0 + 5?', '5', '4', '3', '2');
+    stmtEasy.run('Quanto é 10 - 2 + 1?', '9', '8', '7', '10');
     stmtEasy.finalize();
 
     // Inserção de questões médias
@@ -86,7 +86,6 @@ db.serialize(() => {
     stmtMedium.run('Quanto é 60 ÷ 5?', '12', '10', '15', '8');
     stmtMedium.run('Qual é o próximo número na sequência 2, 4, 6, ?', '8', '10', '12', '14');
     stmtMedium.run('Se um carro anda 80 km/h, quanto ele anda em 2 horas?', '160 km', '120 km', '100 km', '80 km');
-    stmtMedium.run('O que é 3 + 4 x 2?', '11', '14', '10', '9');
     stmtMedium.finalize();
 
     // Inserção de questões difíceis
