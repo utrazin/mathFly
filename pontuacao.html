@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pontuação - MathFly</title>
+    <title>MathFly - Pontuação</title>
     <link rel="stylesheet" href="css/pontuacao.css">
 </head>
 <body>
     <header>
-        <div id="logo">
-            <a href="fases.html">
-                <h1>MathFly</h1>
-                </a>
-        </div>
+        <div class="logo"><a href="index.html">MathFly</a></div>
     </header>
-
-    <div id="content">
-        <h2>Pontuação</h2>
-        <p>Sua pontuação é: <strong>80 pontos</strong></p>
+    <div class="container">
+        <h1>Pontuação <span class="highlight">Final</span></h1>
+        <p>Confira seu desempenho após finalizar o quiz!</p>
+        <div class="score-box">
+            <p class="score-title">Sua Pontuação:</p>
+            <p class="score-value" id="score">0</p>
+        </div>
+        <div class="score-actions">
+            <a href="index.html" class="btn">Voltar para o Menu</a>
+            <a href="fases.html" class="btn">Jogar Novamente</a>
+        </div>
     </div>
-
-    <a href="suporte.html" class="suporte-button">Suporte</a>
-
     <footer>
         <p>&copy; 2025 MathFly - Todos os direitos reservados.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
+
