@@ -15,6 +15,9 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -41,12 +44,24 @@ header {
 }
 
 .container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 87vh;
-   
+    padding-top: 60px;
+}
+
+.animated-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: fadeIn 1.5s ease-in-out, floatText 3s infinite alternate;
+}
+
+.animated-subtitle {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .fases-grid {
@@ -66,35 +81,26 @@ header {
     color: var(--cor-secundaria);
     text-align: center;
     width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.fase-facil {
-    background: #28a745;
-}
-
-.fase-medio {
-    background: #ffc107;
-}
-
-.fase-dificil {
-    background: #fd7e14;
-}
-
-.fase-extremo {
-    background: #dc3545;
-}
+.fase-facil { background: #28a745; border: gray 2px solid;}
+.fase-medio { background: #ffc107; border: gray 2px solid; }
+.fase-dificil { background: #fd7e14; border: gray 2px solid; }
+.fase-extremo { background: #dc3545; border: gray 2px solid; }
 
 .fase-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     text-align: center;
     background: var(--cor-principal);
     color: var(--cor-secundaria);
     padding: 10px 0;
+    position: relative;
 }
