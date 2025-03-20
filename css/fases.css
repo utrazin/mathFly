@@ -8,17 +8,13 @@
     font-family: 'Montserrat',sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     background: linear-gradient(to bottom, var(--cor-secundaria) 70%, var(--cor-claro) 100%);
     color: var(--cor-escuro);
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -26,7 +22,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 80px);
+    min-height: 100vh;
+    padding-top: 60px;
 }
 
 .fases-grid {
@@ -70,7 +67,7 @@ body {
 }
 
 .logo {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     font-size: 24px;
@@ -78,9 +75,15 @@ body {
     font-weight: bold;
 }
 
+.logo a {
+    text-decoration: none;
+    color: var(--cor-principal);
+}
+
+
 footer {
-    position: absolute;
-    bottom: 10px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     text-align: center;
     background: var(--cor-principal);
