@@ -47,18 +47,22 @@ body {
 
 .fase-facil {
     background: #28a745;
+    border: rgb(233, 233, 233) 3px solid;
 }
 
 .fase-medio {
     background: #ffc107;
+    border: rgb(233, 233, 233) 3px solid;
 }
 
 .fase-dificil {
     background: #fd7e14;
+    border: rgb(233, 233, 233) 3px solid;
 }
 
 .fase-extremo {
     background: #dc3545;
+    border: rgb(233, 233, 233) 3px solid;
 }
 
 .fase-card:hover {
