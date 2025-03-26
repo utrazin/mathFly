@@ -66,6 +66,19 @@ header {
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.button-resposta {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 6px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--cor-secundaria);
+    background: var(--cor-principal);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 footer {
     background: var(--cor-principal);
     color: var(--cor-secundaria);
@@ -73,6 +86,14 @@ footer {
     padding: 10px 0;
     position: relative;
     width: 100%;
+}
+
+.marginBottom {
+    padding-bottom: 20px;
+}
+
+.marginTop {
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -104,4 +125,36 @@ footer {
     #logo h1 {
         font-size: 18px;
     }
+}
+
+.question {
+    margin-bottom: 20px; /* Espaçamento entre as perguntas */
+}
+
+.question-label {
+    font-weight: bold; /* Destaque para o texto da pergunta */
+    font-size: 1.2rem; /* Aumenta o tamanho do texto da pergunta */
+}
+
+.answer-option {
+    display: block; /* Cada opção de resposta ocupa uma linha completa */
+    margin: 10px 0; /* Espaçamento entre as opções de resposta */
+}
+
+.star-container {
+    text-align: center;
+    font-size: 32px; /* Aumenta o tamanho das estrelas */
+    margin-bottom: 15px;
+}
+
+.star {
+    margin: 0 8px; /* Aumenta o espaçamento entre as estrelas */
+}
+
+.full {
+    color: gold; /* Cor da estrela preenchida */
+}
+
+.empty {
+    color: lightgray; /* Cor da estrela vazia */
 }

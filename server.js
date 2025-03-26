@@ -8,17 +8,21 @@ const db = new sqlite3.Database('mathfly.db');
 // Para servir arquivos estáticos (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname)));
 
-// Rota para buscar uma pergunta aleatória
-// Rota para buscar uma pergunta aleatória
-app.get('/api/question/:difficulty', (req, res) => {
+// Rota para buscar várias perguntas aleatórias
+app.get('/api/question/:difficulty/:count', (req, res) => {
     const difficulty = req.params.difficulty;
+    const count = parseInt(req.params.count) || 1;
+    console.log(`Dificuldade: ${difficulty}, Contagem: ${count}`); // Log de diagnóstico
 
-    db.get(`SELECT * FROM questions_${difficulty} ORDER BY RANDOM() LIMIT 1`, (err, row) => {
+    db.all(`SELECT * FROM questions_${difficulty} ORDER BY RANDOM() LIMIT ?`, [count], (err, rows) => {
         if (err) {
             console.error(err.message);
-            return res.status(500).json({ error: 'Erro ao buscar a pergunta.' });
+            return res.status(500).json({ error: 'Erro ao buscar as perguntas.' });
         }
-        res.json(row);
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Nenhuma pergunta encontrada.' });
+        }
+        res.json(rows);
     });
 });
 

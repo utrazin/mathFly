@@ -15,14 +15,39 @@
         <p class="animated-subtitle">Selecione uma das dificuldades abaixo para começar o desafio:</p>
         <div class="fases-grid">
             <a href="nivel.html" class="fase-card fase-facil">Fácil</a>
-            <a href="nivel_2.html" class="fase-card fase-medio">Médio</a>
-            <a href="nivel_3.html" class="fase-card fase-dificil">Difícil</a>
-            <a href="nivel_4.html" class="fase-card fase-extremo">Extremo</a>
+            <a href="#" id="fase-medio" class="fase-card fase-medio locked">🔒 Médio</a>
+            <a href="#" id="fase-dificil" class="fase-card fase-dificil locked">🔒 Difícil</a>
+            <a href="#" id="fase-extremo" class="fase-card fase-extremo locked">🔒 Expert</a>
         </div>
     </div>
     <footer>
         <p>&copy; 2025 MathFly - Todos os direitos reservados.</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let progress = JSON.parse(localStorage.getItem('quizProgress')) || { easy: true, medium: false, hard: false, expert: false };
+
+            // Mapeia os IDs para os nomes corretos
+            const phaseNames = {
+                'fase-medio': 'Médio',
+                'fase-dificil': 'Difícil',
+                'fase-extremo': 'Expert'
+            };
+
+            // Função para desbloquear fase com nome correto
+            function unlockPhase(id, url) {
+                let element = document.getElementById(id);
+                element.innerHTML = phaseNames[id]; // Nome correto com acento e maiúscula
+                element.classList.remove('locked');
+                element.setAttribute('href', url);
+            }
+
+            // Verifica quais fases foram desbloqueadas
+            if (progress.medium) unlockPhase('fase-medio', 'nivel_2.html');
+            if (progress.hard) unlockPhase('fase-dificil', 'nivel_3.html');
+            if (progress.expert) unlockPhase('fase-extremo', 'nivel_4.html');
+        });
+    </script>
 </body>
 </html>
