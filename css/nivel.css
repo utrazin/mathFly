@@ -141,20 +141,22 @@ footer {
     margin: 10px 0; /* Espaçamento entre as opções de resposta */
 }
 
-.star-container {
+.stars-container {
+    font-size: 50px; /* Aumenta o tamanho das estrelas */
+    color: gold;
     text-align: center;
-    font-size: 32px; /* Aumenta o tamanho das estrelas */
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Espaço abaixo das estrelas */
 }
 
 .star {
-    margin: 0 8px; /* Aumenta o espaçamento entre as estrelas */
+    font-size: 50px; /* Aumenta ainda mais se necessário */
+    margin: 5px;
 }
 
 .full {
-    color: gold; /* Cor da estrela preenchida */
+    color: gold;
 }
 
 .empty {
-    color: lightgray; /* Cor da estrela vazia */
+    color: lightgray;
 }

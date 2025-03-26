@@ -71,6 +71,7 @@ function displayQuestion() {
 }
 
 // Função para finalizar o quiz e exibir o resultado
+// Função para finalizar o quiz e exibir o resultado
 function endQuiz() {
     const totalQuestions = questions.length;
     
@@ -84,13 +85,24 @@ function endQuiz() {
         if (getDifficultyFromURL() === 'hard') progress.expert = true;
     }
 
+    const maxStars = 5;
+    let starsHTML = '';
+    for (let i = 0; i < maxStars; i++) {
+        if (i < correctAnswersCount) {
+            starsHTML += '<span class="star full">★</span>'; // Estrela cheia
+        } else {
+            starsHTML += '<span class="star empty">☆</span>'; // Estrela vazia
+        }
+    }
+
     // Salva o progresso no LocalStorage
     localStorage.setItem('quizProgress', JSON.stringify(progress));
 
-    // Exibe o resultado final
+    // Exibe o resultado final com as estrelas **acima** do número de acertos
     const contentDiv = document.getElementById('content');
     contentDiv.innerHTML = `
         <h2>Quiz Finalizado!</h2>
+        <div class="stars-container">${starsHTML}</div> <!-- Estrelas acima -->
         <p>Você acertou ${correctAnswersCount} de ${totalQuestions} perguntas.</p>
         <button class="suporte-button marginTop" onclick="restartQuiz()">Reiniciar Quiz</button>
         <button class="suporte-button marginTop" onclick="goToMenu()">Voltar ao Menu</button>
