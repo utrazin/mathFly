@@ -3,9 +3,16 @@ let currentQuestionIndex = 0;
 let correctAnswersCount = 0;
 
 // Função para carregar perguntas aleatórias
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function loadQuestions() {
     const difficulty = getDifficultyFromURL();
-    fetch(`/api/question/${difficulty}/5`) // Altere para buscar 5 perguntas
+    fetch(`/api/question/${difficulty}/5`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao carregar as perguntas.');
@@ -14,6 +21,7 @@ function loadQuestions() {
         })
         .then(loadedQuestions => {
             questions = loadedQuestions;
+            shuffle(questions); // Embaralha as questões
             displayQuestion();
         })
         .catch(error => console.error(error));
@@ -22,39 +30,39 @@ function loadQuestions() {
 // Função para exibir a pergunta atual na página
 function displayQuestion() {
     const question = questions[currentQuestionIndex];
+    const answers = [
+        question.correct_answer,
+        question.wrong_answer1,
+        question.wrong_answer2,
+        question.wrong_answer3
+    ];
+    shuffle(answers); // Embaralha as alternativas
+
     const contentDiv = document.getElementById('content');
+    const questionNumber = currentQuestionIndex + 1; // Número da questão (1 a 5)
+
     contentDiv.innerHTML = `
-        <h2>${getDifficultyTitle()}</h2>
+        <h2>${getDifficultyTitle()} - Questão ${questionNumber}</h2> <!-- Título com número da questão -->
         <p>Resolva a questão abaixo:</p>
         <form id="question-form">
             <div class="question">
                 <label class="question-label" for="questao">${question.question_text}</label>
             </div>
-            <div class="answer-option">
-                <input type="radio" id="correct" name="questao" value="${question.correct_answer}" required>
-                <label for="correct">${question.correct_answer}</label>
-            </div>
-            <div class="answer-option">
-                <input type="radio" id="wrong1" name="questao" value="${question.wrong_answer1}">
-                <label for="wrong1">${question.wrong_answer1}</label>
-            </div>
-            <div class="answer-option">
-                <input type="radio" id="wrong2" name="questao" value="${question.wrong_answer2}">
-                <label for="wrong2">${question.wrong_answer2}</label>
-            </div>
-            <div class="answer-option">
-                <input type="radio" id="wrong3" name="questao" value="${question.wrong_answer3}">
-                <label for="wrong3">${question.wrong_answer3}</label>
-            </div>
+            ${answers.map((answer, index) => `
+                <div class="answer-option">
+                    <input type="radio" id="answer${index}" name="questao" value="${answer}" required>
+                    <label for="answer${index}">${answer}</label>
+                </div>
+            `).join('')}
             <button type="submit" class="button-resposta marginTop">Responder</button>
         </form>
+        <button id="exit-quiz" class="button-exit marginTop">Sair do Quiz</button> <!-- Botão de sair -->
     `;
-    
-    // Adiciona o evento para verificar a resposta
+
     const form = document.getElementById('question-form');
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const userAnswer = form.questao.value; // Captura a resposta escolhida
+        const userAnswer = form.questao.value;
         if (userAnswer === question.correct_answer) {
             correctAnswersCount++;
             alert('Resposta correta!');
@@ -68,9 +76,17 @@ function displayQuestion() {
             endQuiz();
         }
     });
+
+    // Adiciona o evento para o botão "Sair do Quiz"
+    const exitButton = document.getElementById('exit-quiz');
+    exitButton.addEventListener('click', () => {
+        const confirmExit = confirm("Tem certeza que deseja sair desse quiz?");
+        if (confirmExit) {
+            goToMenu(); // Redireciona para a página de fases
+        }
+    });
 }
 
-// Função para finalizar o quiz e exibir o resultado
 // Função para finalizar o quiz e exibir o resultado
 function endQuiz() {
     const totalQuestions = questions.length;
