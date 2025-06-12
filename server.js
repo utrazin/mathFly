@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname)));
 app.get('/api/question/:difficulty/:count', (req, res) => {
     const difficulty = req.params.difficulty;
     const count = parseInt(req.params.count) || 1;
-    console.log(`Dificuldade: ${difficulty}, Contagem: ${count}`); // Log de diagnóstico
+    console.log(`Dificuldade: ${difficulty}, Contagem: ${count}`);
 
     db.all(`SELECT * FROM questions_${difficulty} ORDER BY RANDOM() LIMIT ?`, [count], (err, rows) => {
         if (err) {
@@ -28,27 +28,27 @@ app.get('/api/question/:difficulty/:count', (req, res) => {
 
 // Rota para carregar o arquivo HTML de acordo com a dificuldade
 app.get('/nivel', (req, res) => {
-    res.sendFile(path.join(__dirname, 'nivel.html')); // Fácil
+    res.sendFile(path.join(__dirname, 'nivel.html'));
 });
 
 app.get('/nivel_2', (req, res) => {
-    res.sendFile(path.join(__dirname, 'nivel_2.html')); // Médio
+    res.sendFile(path.join(__dirname, 'nivel_2.html'));
 });
 
 app.get('/nivel_3', (req, res) => {
-    res.sendFile(path.join(__dirname, 'nivel_3.html')); // Difícil
+    res.sendFile(path.join(__dirname, 'nivel_3.html'));
 });
 
 app.get('/nivel_4', (req, res) => {
-    res.sendFile(path.join(__dirname, 'nivel_4.html')); // Extremo
+    res.sendFile(path.join(__dirname, 'nivel_4.html'));
 });
 
-// Redirecionamento da raiz para /nivel
+// Rota inicial mostra fases.html
 app.get('/', (req, res) => {
-    res.redirect('/nivel');
+    res.sendFile(path.join(__dirname, 'fases.html'));
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
