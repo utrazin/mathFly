@@ -48,12 +48,14 @@ function displayQuestion() {
             <div class="question">
                 <label class="question-label" for="questao">${question.question_text}</label>
             </div>
+            <div class="answers-grid">
             ${answers.map((answer, index) => `
-                <div class="answer-option">
-                    <input type="radio" id="answer${index}" name="questao" value="${answer}" required>
-                    <label for="answer${index}">${answer}</label>
-                </div>
+                <label class="answer-option" for="answer${index}">
+                <input type="radio" id="answer${index}" name="questao" value="${answer}" required>
+                ${answer}
+                </label>
             `).join('')}
+            </div>
             <button type="submit" class="button-resposta marginTop">Responder</button>
         </form>
         <button id="exit-quiz" class="button-exit marginTop">Sair do Quiz</button> <!-- Botão de sair -->

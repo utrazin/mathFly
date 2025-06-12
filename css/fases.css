@@ -1,11 +1,16 @@
 :root {
-    --cor-principal: #d32f2f;
+    --cor-principal: #4e007a;
     --cor-secundaria: #ffffff;
-    --cor-claro: #f8d7da;
-    --cor-escuro: #a00;
-    --cor-gradiente: linear-gradient(135deg, #d32f2f 30%, #a00 100%);
-    --cor-fundo: url('background-texture.png'), linear-gradient(180deg, #ffffff 20%, #f8d7da 100%);
-    font-family: 'Montserrat', sans-serif;
+    --cor-claro: #c9a0ff;
+    --cor-escuro: #2e004a;
+    --cor-gradiente: linear-gradient(135deg, #7b33ff 30%, #4e007a 100%);
+
+    --pattern-roxo-suave:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.07) 0%, transparent 25%),
+        radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 30%);
 }
 
 body {
@@ -22,16 +27,20 @@ body {
 
 header {
     background: var(--cor-principal);
-    padding: 30px;
+    padding: 80px 30px 30px 30px;
     text-align: right;
+    position: relative;
+    overflow: hidden;
+    color: var(--cor-secundaria);
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 10px;
+    right: auto;
+    animation: fadeIn 1.5s ease-in-out, floatText 3s infinite alternate 1.5s;
 }
 
 .logo a {
@@ -40,7 +49,7 @@ header {
 }
 
 .logo a:hover {
-    text-decoration: none;
+    color: #d1b3ff;
 }
 
 .container {
@@ -56,12 +65,14 @@ header {
     font-size: 2.5rem;
     font-weight: bold;
     animation: fadeIn 1.5s ease-in-out, floatText 3s infinite alternate;
+    color: var(--cor-principal);
 }
 
 .animated-subtitle {
     font-size: 1.2rem;
     margin-top: 10px;
     animation: fadeIn 2s ease-in-out;
+    color: var(--cor-escuro);
 }
 
 .fases-grid {
@@ -84,6 +95,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .fase-facil { background: #28a745; border: gray 2px solid; }
@@ -103,20 +115,19 @@ header {
     pointer-events: none;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .fases-grid {
-        grid-template-columns: 1fr; /* 1 coluna para telas menores */
+        grid-template-columns: 1fr;
     }
 
     .fase-card {
-        width: 100%; /* Faz os cards ocuparem toda a largura disponível */
-        font-size: 16px; /* Reduz o tamanho da fonte */
-        padding: 10px; /* Ajusta o padding */
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
     }
 
     .logo {
-        font-size: 20px; /* Diminui o tamanho do logo */
+        font-size: 20px;
         top: 10px;
         right: 10px;
     }
@@ -126,26 +137,26 @@ header {
     }
 
     .animated-title {
-        font-size: 2rem; /* Reduz o tamanho do título */
+        font-size: 2rem;
     }
 
     .animated-subtitle {
-        font-size: 1rem; /* Reduz o subtítulo */
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
     .animated-title {
-        font-size: 1.8rem; /* Reduz ainda mais o tamanho do título em telas muito pequenas */
+        font-size: 1.8rem;
     }
 
     .animated-subtitle {
-        font-size: 0.9rem; /* Ajusta o subtítulo em telas muito pequenas */
+        font-size: 0.9rem;
     }
 
     .fase-card {
-        font-size: 14px; /* Reduz o tamanho da fonte */
-        padding: 8px; /* Ajusta o padding para telas pequenas */
+        font-size: 14px;
+        padding: 8px;
     }
 }
 
@@ -154,6 +165,44 @@ footer {
     text-align: center;
     background: var(--cor-principal);
     color: var(--cor-secundaria);
-    padding: 10px 0;
+    padding: 30px 0;
     position: relative;
+    overflow: hidden;
+}
+
+header::before,
+footer::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(201, 160, 255, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 75% 70%, rgba(123, 51, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+    animation: backgroundMove 20s linear infinite;
+    z-index: 0;
+}
+
+header > *,
+footer > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes backgroundMove {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(10%, 10%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes floatText {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
 }
