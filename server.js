@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const app = express();
-const db = new sqlite3.Database('mathfly.db');
+const db = new sqlite3.Database(path.join(__dirname, 'mathfly.db'));
 
 // Para servir arquivos estáticos (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname)));
@@ -43,6 +43,7 @@ app.get('/nivel_4', (req, res) => {
     res.sendFile(path.join(__dirname, 'nivel_4.html')); // Extremo
 });
 
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
