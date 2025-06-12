@@ -43,7 +43,6 @@ app.get('/nivel_4', (req, res) => {
     res.sendFile(path.join(__dirname, 'nivel_4.html')); // Extremo
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
 });
