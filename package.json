@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "questions.js",
   "scripts": {
+    "start": "node server.js",
+    "build": "echo 'Build completed - static files ready'",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
